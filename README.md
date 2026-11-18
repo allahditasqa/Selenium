@@ -18,7 +18,8 @@ Selenium/
 │   ├── pages/                   # BasePage, LoginPage, InventoryPage, CartPage, CheckoutPage (POM)
 │   └── utils/DriverFactory.java # chrome / firefox / edge, headless switch
 ├── src/test/java/com/allahditta/tests/   # BaseTest, LoginTest, ShoppingTest
-└── .github/workflows/ci.yml     # GitHub Actions (headless Chrome)
+├── docs/  tools/docs.js  reports/    # test case docs, traceability check, reports
+└── .github/workflows/ci.yml     # GitHub Actions (headless Chrome, report publishing)
 ```
 
 ## Prerequisites

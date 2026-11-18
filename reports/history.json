@@ -1,0 +1,29 @@
+[
+  {
+    "RunId": "20261118-073751",
+    "StartedAt": "2026-11-18T07:37:51.610Z",
+    "DurationSeconds": 19.1,
+    "Modules": [
+      {
+        "Module": "Login",
+        "ReportPath": "login/Login test 18-11-2026_07-37-51.html",
+        "CsvPath": "login/Login test cases 18-11-2026_07-37-51.csv",
+        "Total": 6,
+        "Passed": 6,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 2.5
+      },
+      {
+        "Module": "Shopping",
+        "ReportPath": "shopping/Shopping test 18-11-2026_07-37-51.html",
+        "CsvPath": "shopping/Shopping test cases 18-11-2026_07-37-51.csv",
+        "Total": 4,
+        "Passed": 4,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 1.9
+      }
+    ]
+  }
+]

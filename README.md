@@ -36,5 +36,32 @@ Reports: `target/surefire-reports/`.
 ## Notes
 Only the public demo credentials of saucedemo.com are used (`standard_user` / `secret_sauce`); no secrets are stored in the repo.
 
-## Status
-The project compiles (`mvn test-compile`). The first end-to-end run on the authoring machine was blocked by a local Java networking problem (`Unable to establish loopback connection` while creating the JDK HttpClient), so the browser tests are expected to run in CI (see the Actions tab) or on a normal machine - check the latest workflow run for the real result.
+## Test cases
+Every test has a documented case with the same ID, in the standard described in [docs/TEST_CASE_STANDARD.md](docs/TEST_CASE_STANDARD.md) (strategy: [docs/TEST_STRATEGY.md](docs/TEST_STRATEGY.md)).
+
+| Module | Document | Master CSV | Cases |
+|--------|----------|-----------|-------|
+| Login | [login.md](docs/test-cases/login.md) | [login.csv](docs/test-cases/login.csv) | 6 |
+| Shopping | [shopping.md](docs/test-cases/shopping.md) | [shopping.csv](docs/test-cases/shopping.csv) | 4 |
+| **Total** | | | **10** (all automated) |
+
+The ID is in the test: `@Test(description = "TC_LOGIN_01 - ...")` (for the data-driven login test the first data value is the ID).
+The Markdown documents are the source of truth. After editing them:
+```bash
+node tools/docs.js csv      # regenerate the master CSVs (Node 18+, no packages)
+node tools/docs.js check    # fails when documents, CSVs and code IDs drift apart (also runs in CI)
+```
+
+## Reports
+The `ReportListener` (registered in `testng.xml`) writes module-wise reports of the real run - never edited by hand, old runs are kept:
+```
+reports/
+├── index.html            # history, newest run first
+├── history.json
+└── login/  shopping/
+    ├── <Module> test <DD-MM-YYYY>_<HH-mm-ss>.html         # self-contained, one card per test case with a screenshot
+    └── <Module> test cases <DD-MM-YYYY>_<HH-mm-ss>.csv     # steps, expected result and the REAL result
+```
+Open [reports/index.html](reports/index.html) after cloning (GitHub shows HTML as text). Generate your own with `mvn test`.
+
+**Where the committed reports come from (honest note):** the browser tests could not be started on the authoring machine (the Java HTTP client of that PC fails with `Unable to establish loopback connection`; this is a local problem, not a code problem). The committed reports are therefore the output of the **GitHub Actions run** (headless Chrome on ubuntu-latest, no retries), published by the workflow itself when the commit message contains `[publish-reports]`. The `Environment` column of every CSV says where the run happened.

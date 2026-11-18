@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="SauceDemo Suite">
+  <listeners>
+    <listener class-name="com.allahditta.report.ReportListener"/>
+  </listeners>
   <test name="SauceDemo UI Tests">
     <packages><package name="com.allahditta.tests"/></packages>
   </test>

@@ -11,6 +11,7 @@
     <selenium.version>4.27.0</selenium.version>
     <browser>chrome</browser>
     <headless>true</headless>
+    <report.env>Selenium 4.27 + TestNG 7.10, ${browser} (headless=${headless}) - https://www.saucedemo.com</report.env>
   </properties>
   <dependencies>
     <dependency><groupId>org.seleniumhq.selenium</groupId><artifactId>selenium-java</artifactId><version>${selenium.version}</version></dependency>
@@ -25,6 +26,8 @@
           <systemPropertyVariables>
             <browser>${browser}</browser>
             <headless>${headless}</headless>
+            <report.title>Selenium</report.title>
+            <report.env>${report.env}</report.env>
           </systemPropertyVariables>
         </configuration>
       </plugin>
